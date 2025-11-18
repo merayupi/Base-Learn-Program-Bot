@@ -7,7 +7,7 @@ import { EXERCISE_TESTERS, TEST_CONTRACT_ABI } from "../config/exerciseTesters";
 export async function submitAllToTesters() {
     const { publicClient, walletClient } = createClients();
 
-    const filePath = path.join(process.cwd(), "deployments", "base-sepolia.json");
+    const filePath = path.join(process.cwd(), "./src/deployments", "base-sepolia.json");
     const raw = await fs.readFile(filePath, "utf-8");
     const deployed = JSON.parse(raw) as Record<string, string>;
 

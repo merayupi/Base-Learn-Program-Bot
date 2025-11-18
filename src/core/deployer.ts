@@ -31,7 +31,7 @@ export async function deployAllContracts() {
             args,
         });
 
-        console.log("Tx hash: https://sepolia.basescan.org/tx/", hash);
+        console.log(`Tx hash: https://sepolia.basescan.org/tx/${hash}`);
 
         const receipt = await publicClient.waitForTransactionReceipt({ hash });
         const address = receipt.contractAddress as Address;
@@ -44,7 +44,7 @@ export async function deployAllContracts() {
         ctx.deployed[cfg.id] = address;
     }
 
-    const outDir = path.join(process.cwd(), "deployments");
+    const outDir = path.join(process.cwd(), "src/deployments");
     await fs.mkdir(outDir, { recursive: true });
 
     const outPath = path.join(outDir, "base-sepolia.json");

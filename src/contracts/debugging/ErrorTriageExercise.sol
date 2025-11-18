@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.20;
 
 contract ErrorTriageExercise {
     /**
@@ -48,7 +48,7 @@ contract ErrorTriageExercise {
     function popWithReturn() public returns (uint) {
         // Fixed: Check for empty array and store value before popping
         require(arr.length > 0, "Array is empty");
-        
+
         uint valueToReturn = arr[arr.length - 1];
         arr.pop();
         return valueToReturn;

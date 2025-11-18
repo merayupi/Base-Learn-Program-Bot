@@ -13,34 +13,34 @@ export interface ContractConfig {
 }
 
 const build = (file: string) =>
-    path.join(process.cwd(), "src/contracts/build", file);
+    path.join(process.cwd(), "src/contracts/build/src/contracts", file);
 
 export const CONTRACTS: ContractConfig[] = [
     {
         id: "BasicMath",
-        artifactPath: build("BasicMath.json"),
+        artifactPath: build("./basic-contract/BasicMath.sol/BasicMath.json"),
     },
     {
         id: "ControlStructures",
-        artifactPath: build("ControlStructures.json"),
+        artifactPath: build("./control-flow/ControlStructures.sol/ControlStructures.json"),
     },
     {
         id: "EmployeeStorage",
-        artifactPath: build("EmployeeStorage.json"),
+        artifactPath: build("./storage/EmployeeStorage.sol/EmployeeStorage.json"),
     },
     {
         id: "ArraysExercise",
-        artifactPath: build("ArraysExercise.json"),
+        artifactPath: build("./arrays/ArraysExercise.sol/ArraysExercise.json"),
     },
     {
         id: "FavoriteRecords",
-        artifactPath: build("FavoriteRecords.json"),
+        artifactPath: build("./mappings/FavoriteRecords.sol/FavoriteRecords.json"),
     },
 
     // --- Inheritance-related ---
     {
         id: "SalesPerson",
-        artifactPath: build("SalesPerson.json"),
+        artifactPath: build("./inheritance/InheritanceExercise.sol/SalesPerson.json"),
         getConstructorArgs: () => [
             55555, // employeeNumber
             12345, // officeNumber
@@ -49,7 +49,7 @@ export const CONTRACTS: ContractConfig[] = [
     },
     {
         id: "EngineeringManager",
-        artifactPath: build("EngineeringManager.json"),
+        artifactPath: build("./inheritance/InheritanceExercise.sol/EngineeringManager.json"),
         getConstructorArgs: () => [
             33333, // employeeNumber
             54321, // officeNumber
@@ -58,7 +58,7 @@ export const CONTRACTS: ContractConfig[] = [
     },
     {
         id: "InheritanceSubmission",
-        artifactPath: build("InheritanceSubmission.json"),
+        artifactPath: build("./inheritance/InheritanceSubmission.sol/InheritanceSubmission.json"),
         getConstructorArgs: (ctx) => [
             ctx.deployed["SalesPerson"],
             ctx.deployed["EngineeringManager"],
@@ -67,30 +67,30 @@ export const CONTRACTS: ContractConfig[] = [
 
     {
         id: "GarageManager",
-        artifactPath: build("GarageManager.json"),
+        artifactPath: build("./structs/GarageManager.sol/GarageManager.json"),
     },
     {
         id: "ImportsExercise",
-        artifactPath: build("ImportsExercise.json"),
+        artifactPath: build("./imports/ImportsExercise.sol/ImportsExercise.json"),
     },
     {
         id: "ErrorTriageExercise",
-        artifactPath: build("ErrorTriageExercise.json"),
+        artifactPath: build("./debugging/ErrorTriageExercise.sol/ErrorTriageExercise.json"),
     },
     {
         id: "AddressBookFactory",
-        artifactPath: build("AddressBookFactory.json"),
+        artifactPath: build("./factory-pattern/AddressBookFactory.sol/AddressBookFactory.json"),
     },
     {
         id: "UnburnableToken",
-        artifactPath: build("UnburnableToken.json"),
+        artifactPath: build("./simple-token/UnburnableToken.sol/UnburnableToken.json"),
     },
     {
         id: "WeightedVoting",
-        artifactPath: build("WeightedVoting.json"),
+        artifactPath: build("./erc-20/WeightedVoting.sol/WeightedVoting.json"),
     },
     {
         id: "HaikuNFT",
-        artifactPath: build("HaikuNFT.json"),
+        artifactPath: build("./erc-721/HaikuNFT.sol/HaikuNFT.json"),
     },
 ];
