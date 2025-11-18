@@ -7,11 +7,11 @@ async function main() {
 
   try {
     // === 1. DEPLOY ALL ===
-    // console.log("Step 1: Deploying all contracts...\n");
-    // const deployed = await deployAllContracts();
+    console.log("Step 1: Deploying all contracts...\n");
+    const deployed = await deployAllContracts();
 
-    // console.log("\nDeploy completed!");
-    // console.log("Deployed addresses:", deployed);
+    console.log("\nDeploy completed!");
+    console.log("Deployed addresses:", deployed);
 
     // === 2. SUBMIT TO TESTERS ===
     console.log("\nStep 2: Submitting to CA testers...\n");
