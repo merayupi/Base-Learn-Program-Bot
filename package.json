@@ -2,11 +2,15 @@
   "name": "base-learn-program-bot",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "start": "tsx src/index.ts"
+  },
   "private": true,
   "devDependencies": {
     "@types/bun": "latest",
     "@types/node": "^24.10.1",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "tsx": "^4.20.6"
   },
   "peerDependencies": {
     "typescript": "^5.9.3"
