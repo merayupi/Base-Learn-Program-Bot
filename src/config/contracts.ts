@@ -43,17 +43,17 @@ export const CONTRACTS: ContractConfig[] = [
         artifactPath: build("./inheritance/InheritanceExercise.sol/SalesPerson.json"),
         getConstructorArgs: () => [
             55555, // employeeNumber
-            12345, // officeNumber
-            20, // salesTarget
+            12345, // ManagerID
+            20, // HourlyRate
         ],
     },
     {
         id: "EngineeringManager",
         artifactPath: build("./inheritance/InheritanceExercise.sol/EngineeringManager.json"),
         getConstructorArgs: () => [
-            33333, // employeeNumber
-            54321, // officeNumber
-            5, // teamCount
+            54321, // IDNumber
+            11111, // ManagerID
+            200000, // Annual Salary
         ],
     },
     {
