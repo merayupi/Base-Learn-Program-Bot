@@ -1,4 +1,3 @@
-// src/config/contracts.ts
 import path from "path";
 import type { Address } from "viem";
 
@@ -42,7 +41,7 @@ export const CONTRACTS: ContractConfig[] = [
         id: "SalesPerson",
         artifactPath: build("./inheritance/InheritanceExercise.sol/SalesPerson.json"),
         getConstructorArgs: () => [
-            55555, // employeeNumber
+            55555, // salesNumber
             12345, // ManagerID
             20, // HourlyRate
         ],
