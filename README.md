@@ -1,72 +1,69 @@
 # Base Learn Program Bot
 
-This bot runs a deploy and submit to test contract.
-It deploys all contracts to Base Sepolia, then submits to tester contracts.
+Deploys all exercises to Base Sepolia and submits each deployed address to its tester contract.
 
-## Summary
-- Deploy all contracts from `src/contracts/build`.
-- Save addresses to `deployments/base-sepolia.json`.
-- Submit addresses to testers in `src/config/exerciseTesters.ts`.
+## What It Does
+- Compiles Solidity via Hardhat.
+- Deploys contracts in order from `src/config/contracts.ts` using viem.
+- Saves deployed addresses to `src/deployments/base-sepolia.json`.
+- Calls `testContract(address)` on each tester in `src/config/exerciseTesters.ts`.
 
-## Prerequisites
-- Node.js 18 or newer.
-- pnpm or npm installed.
-- ETH on Base Sepolia for gas.
+## Requirements
+- Node.js 18+
+- pnpm or npm
+- Some Base Sepolia ETH for gas
 
-## Installation
-```
+## Install
+```bash
 pnpm install
 ```
 or
-```
+```bash
 npm install
 ```
 
-## Configuration
-Create a `.env` file in the project root.
-Add your private key in hex format with `0x` prefix.
-
-Example `.env`:
-```
+## Configure
+Create a `.env` in the project root with your test private key (hex with `0x`):
+```env
 PRIVATE_KEY=0xabc123...yourprivatekey
 ```
-
-Use a test account.
-Do not share your private key.
+Notes:
+- Use a throwaway/test account only.
+- Keep your key secret; do not commit `.env`.
 
 ## Run
-```
+```bash
 pnpm start
 ```
 or
-```
+```bash
 npm start
 ```
-What it does:
-- Deploys contracts in the order from `src/config/contracts.ts`.
-- Writes results to `deployments/base-sepolia.json`.
-- Calls `testContract` on each tester contract.
+The script will:
+- Run `npx hardhat compile --force`.
+- Deploy all artifacts found under `src/contracts/build/src/contracts/**/Contract.json`.
+- Write results to `src/deployments/base-sepolia.json`.
+- Submit each address to its tester contract.
 
 Main outputs:
-- File `deployments/base-sepolia.json` with `id` and `address` pairs.
-- Logs with transaction hashes and contract addresses.
+- `src/deployments/base-sepolia.json`: map of `{ id: address }`.
+- Console logs with transaction hashes and deployed addresses.
 
 ## Project Structure
-- `src/index.ts`: entry point. Runs deploy and submit.
-- `src/core/deployer.ts`: deploy logic and address saving.
-- `src/core/submitter.ts`: submit addresses to testers.
-- `src/core/client.ts`: viem clients and account setup.
-- `src/config/contracts.ts`: contract list and constructor args.
-- `src/config/exerciseTesters.ts`: tester ABI and tester addresses.
-- `src/contracts/build/*.json`: ABI and bytecode artifacts.
-- `deployments/base-sepolia.json`: deploy result file.
+- `src/index.ts`: pipeline entry (compile → deploy → submit).
+- `src/core/compiler.ts`: runs Hardhat compile.
+- `src/core/deployer.ts`: deploys and writes `src/deployments/base-sepolia.json`.
+- `src/core/submitter.ts`: submits addresses to testers.
+- `src/core/client.ts`: viem client + account from `.env`.
+- `src/config/contracts.ts`: list of contracts and constructor args.
+- `src/config/exerciseTesters.ts`: tester ABI and addresses (Base Sepolia).
+- `src/contracts/build/...`: Hardhat artifacts (ABI + bytecode JSON).
 
 ## Customize
-- Edit the contract list in `src/config/contracts.ts`.
-- Edit tester addresses in `src/config/exerciseTesters.ts`.
+- Change deploy order or add/remove contracts in `src/config/contracts.ts`.
+- Update tester addresses in `src/config/exerciseTesters.ts`.
 
 ## Troubleshooting
-- `PRIVATE_KEY belum di-set di .env`: create `.env`, set `PRIVATE_KEY`.
+- `PRIVATE_KEY belum di-set di .env`: create `.env` and set `PRIVATE_KEY`.
 - `insufficient funds for gas`: fund your Base Sepolia account.
-- Invalid artifact: check ABI and bytecode in `src/contracts/build`.
-- RPC error: retry, check connection and network.
+- Invalid artifact: ensure ABI/bytecode exist in `src/contracts/build` (run compile).
