@@ -51,7 +51,7 @@ contract Manager {
     }
 }
 
-contract SalesPerson is Hourly {
+contract Salesperson is Hourly {
     constructor(uint _idNumber, uint _managerId, uint _hourlyRate)
         Hourly(_idNumber, _managerId, _hourlyRate) {
     }
